@@ -6,12 +6,13 @@ import pool from "./db/db.js"; // promise-based mysql2 pool
 import tables from "./db/setupSchema.js";
 
 const PORT = process.env.PORT || 5000;
+const database = process.env.MYSQL_DB;
 
 async function startServer() {
   try {
     // Test MySQL connection with a simple query
     const [rows] = await pool.query("SELECT 1");
-    console.log("MySQL connected successfully");
+    console.log(`MySQL connected successfully ${database}`);
     //tables();
 
     app.listen(PORT, () => {

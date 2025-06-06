@@ -2,6 +2,26 @@ import pool from "../db/db.js";
 import apiResponse from "../utils/apiResponse.js";
 import apiError from "../utils/apiError.js";
 
+const getAllUsers = async (req, res, next) => {
+  try {
+    const queryString = `SELECT * FROM users`;
+    const [result] = await pool.query(queryString);
+
+    if (result.length === 0) {
+      return next(new apiError(404, "No users found"));
+    }
+
+    apiResponse(res, {
+      statusCode: 200,
+      message: "Users fetched successfully",
+      data: result,
+    });
+  } catch (err) {
+    console.error("GetAllUsers Error:", err);
+    next(new apiError(500, "Server error: Unable to fetch users"));
+  }
+};
+
 const createUser = async (req, res, next) => {
   try {
     const { name, email } = req.body;
@@ -61,7 +81,6 @@ const updateUser = async (req, res, next) => {
       return next(new apiError(404, "User not found"));
     }
 
-    // Optionally, fetch the updated user
     const [updatedUser] = await pool.query(`SELECT * FROM users WHERE id = ?`, [
       id,
     ]);
@@ -99,4 +118,4 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-export { createUser, getUser, updateUser, deleteUser };
+export { getAllUsers, createUser, getUser, updateUser, deleteUser };
