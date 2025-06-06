@@ -1,0 +1,79 @@
+# Root
+.env
+.DS_Store
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+logs/**/*.log
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Dependency directories
+client/node_modules/
+server/node_modules/
+
+# Build output
+client/dist/
+client/build/
+server/dist/
+
+# Runtime files
+server/tmp/
+server/uploads/
+
+# Test coverage
+coverage/
+*.lcov
+
+# Ignore optional lock files if not consistent
+# package-lock.json
+# yarn.lock
+
+# Mac/Linux trash
+.Trash-*
+
+# React specific
+client/.env
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# Ignore any system binary caches
+*.swp
+*.bak
+*.tmp
+
+# Ignore database dumps or data files
+*.sqlite
+*.db
+*.sql
+dump.rdb
+*.tar.gz
+
+# Ignore any private keys or certificates
+*.pem
+*.key
+*.crt
+
+# VS Code config
+client/.vscode/
+server/.vscode/
+
+# Optional: if you're using docker
+docker-compose.override.yml
+*.pid
