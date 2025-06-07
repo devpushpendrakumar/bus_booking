@@ -1,23 +1,16 @@
-import mysql from "mysql2/promise";
+import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
 
-const pool = mysql.createPool({
-  connectionLimit: 10, // You can adjust this based on load
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASS,
-  database: process.env.MYSQL_DB,
-});
-
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("MySQL pool connection error:", err);
-    process.exit(1);
-  } else {
-    console.log("MySQL pool connected successfully");
-    connection.release(); // Important to release the connection back to the pool
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT || "mysql", // Default to MySQL if not specified
+    logging: false,
   }
-});
+);
 
-export default pool;
+export default sequelize;

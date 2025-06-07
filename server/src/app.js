@@ -17,10 +17,10 @@ app.get("/", (req, res) => {
 });
 
 // User routes
-app.use("/api/users", userRoutes);
+app.use("/users", userRoutes);
 
 // Bus routes
-app.use("/api/buses", busRoutes);
+app.use("/buses", busRoutes);
 
 // Error handling middleware
 app.use(errorMiddleware);
